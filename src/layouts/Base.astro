@@ -8,6 +8,7 @@ import Header from "@/partials/Header.astro";
 import "@/styles/main.scss";
 import { AstroFont } from "astro-font";
 import { ViewTransitions } from "astro:transitions";
+import { SEO } from "astro-seo";
 const { pathname } = Astro.url;
 
 // font families
@@ -44,6 +45,8 @@ const { title, meta_title, description, image, noindex, canonical } =
 <!doctype html>
 <html lang="en">
   <head>
+    <SEO title={meta_title} description={description} />
+
     <!-- favicon -->
     <link rel="shortcut icon" href={config.site.favicon} />
     <!-- theme meta -->
