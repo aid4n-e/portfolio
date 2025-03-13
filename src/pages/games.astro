@@ -19,6 +19,8 @@ const posts = await getSinglePage("posts");
 const { pagination } = config.settings;
 const { name, image, designation, bio } = config.profile;
 const sortPostByDate = sortByDate(posts);
+import mmm from "@/pages/mmm.mp3";
+
 
 interface Homepage {
   banner: {
@@ -31,21 +33,14 @@ interface Homepage {
 }
 ---
 
-<Base title="PAGE">
+<Base>
   {/* profile */}
   <div class="section">
     <div class="container">
       <div class="row">
-        <div class="mx-auto text-center lg:col-8">
-          <ImageMod
-            class="mx-auto rounded-full"
-            src={image}
-            width={220}
-            height={220}
-            alt={name}
-          />
+        <div class="mx-auto text-left lg:col-8">
           <h1
-            set:html={markdownify(name)}
+            set:html={markdownify("Game Development")}
             class="mt-12 text-6xl lg:text-8xl font-semibold"
           />
           <p
@@ -59,28 +54,4 @@ interface Homepage {
     </div>
   </div>
 
-  {/* posts */}
-  <!-- <div class="pt-4">
-    <div class="container">
-      <div class="row">
-        <div class="mx-auto lg:col-10">
-          <div class="row">
-            {
-              sortPostByDate
-                .slice(0, pagination)
-                .map((post) => (
-                  <Post className="col-12 mb-6 sm:col-6" post={post} />
-                ))
-            }
-          </div>
-        </div>
-      </div>
-      <div class="mt-12">
-        <Pagination
-          totalPages={Math.ceil(posts.length / pagination)}
-          currentPage={1}
-        />
-      </div>
-    </div>
-  </div>-->
 </Base>
