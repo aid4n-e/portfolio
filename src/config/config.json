@@ -16,8 +16,8 @@
   "profile": {
     "name": "Aidan Evans",
     "image": "/images/developer.png",
-    "designation": "Front-end developer",
-    "bio": "Programmer, audio engineer, game developer."
+    "designation": "Programmer, audio engineer, game developer",
+    "bio": ""
   },
 
   "params": {
@@ -32,8 +32,8 @@
   },
 
   "metadata": {
-    "meta_author": "Statichunt",
+    "meta_author": "Aidan Evans",
     "meta_image": "/images/og-image.png",
-    "meta_description": "astro and tailwind boilerplate"
+    "meta_description": "aidan evans portfolio biography"
   }
 }

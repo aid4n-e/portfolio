@@ -6,6 +6,7 @@ import Base from "@/layouts/Base.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import { markdownify } from "@/lib/utils/textConverter";
 import type { Button, Feature } from "@/types";
+import { getEntry } from "astro:content";
 
 import config from "@/config/config.json";
 import social from "@/config/social.json";
@@ -17,9 +18,13 @@ import Post from "@/components/Post.astro";
 const { blog_folder } = config.settings;
 const posts = await getSinglePage("posts");
 const { pagination } = config.settings;
-const { name, image, designation, bio } = config.profile;
 const sortPostByDate = sortByDate(posts);
 import mmm from "@/pages/mmm.mp3";
+
+const contact = await getEntry("contact", "-index");
+const { contact_form_action }: { contact_form_action: string } = config.params;
+const { title, description, meta_title, image } = contact.data;
+const { Content } = await contact.render();
 
 
 interface Homepage {
@@ -33,25 +38,22 @@ interface Homepage {
 }
 ---
 
-<Base>
-  {/* profile */}
-  <div class="section">
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+  <section class="section pt-[72px]">
     <div class="container">
       <div class="row">
-        <div class="mx-auto text-left lg:col-8">
-          <h1
-            set:html={markdownify("Game Development")}
-            class="mt-12 text-6xl lg:text-8xl font-semibold"
-          />
-          <p
-            set:html={markdownify(designation)}
-            class="mt-6 text-primary text-xl"
-          />
-          <p set:html={markdownify(bio)} class="mt-4 leading-9 text-xl" />
-          <Social source={social.main} className="social-icons mt-8" />
+        <div class="mx-auto lg:col-8">
+          <div class="content">
+            <Content />
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
+  </section>
 </Base>
