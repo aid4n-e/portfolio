@@ -173,12 +173,16 @@ const { title, meta_title, description, image, noindex, canonical } =
     />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
-  <body>
+  <body>    
     <TwSizeIndicator />
     {!pathname.startsWith("/posts/") && <Header />}
-    <main id="main-content">
-      <slot />
-    </main>
+
+      <main id="main-content">
+        <slot />
+      </main>
+
+
     <Footer />
+    </div>
   </body>
 </html>
