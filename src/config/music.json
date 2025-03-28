@@ -1,7 +1,14 @@
-{
-    "song1": {
-    "title": "Hydrogen Astro",
-    "file": "mmm.mp3",
-    "icon": "/images/developer.png"
+[
+    {
+        "title": "song 1",
+        "file": "mmm.mp3"
+    },
+    {
+        "title": "song 2",
+        "file": "two.mp3"
+    },
+    {
+        "title": "song 3",
+        "file": "3.mp3"
     }
-}
+]

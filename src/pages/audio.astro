@@ -121,29 +121,7 @@ interface Homepage {
               <span class=" text-base font-semibold uppercase text-gray-300"> play list</span>
           </div>
 
-          <div class="bg-black bg-opacity-15 rounded-md flex border-b-3 pt-1 pb-3 cursor-pointer hover:shadow-md px-2 mt-1 mb-1">
-            <img class='w-10 h-10 object-cover rounded-lg' alt='User avatar' src='/images/developer.png'>
-            <div class="flex flex-col px-4 w-full pb-2">   
-              <span class="text-sm text-purple-400 capitalize font-semibold pt-1">
-                my song
-              </span>
-              <span class="text-xs text-gray-300 uppercase font-medium ">
-                -"hello," aidan
-              </span>
-            </div>
-          </div>
-
-          <div class="bg-black bg-opacity-15 rounded-md flex border-b-3 pt-1 pb-3 cursor-pointer hover:shadow-md px-2 mt-1 mb-1">
-            <img class='w-10 h-10 object-cover rounded-lg' alt='User avatar' src='/images/developer.png'>
-            <div class="flex flex-col px-4 w-full pb-2">
-                <span class="text-sm text-purple-400 capitalize font-semibold pt-1">
-                  my song
-                </span>
-                <span class="text-xs text-gray-300 uppercase font-medium ">
-                  -"my album," aidan
-                </span>
-            </div>
-          </div>
+          <div id="playlist"></div>
 
         </div>
       </div>
@@ -159,18 +137,29 @@ interface Homepage {
   <script>
     import music from "@/config/music.json";
 
-
-    itemArray.forEach(item => {
-      console.log(item); // Output the name of each song
-      console.log(`Price: $${item.title}`);
-    });
-
-
     const playPauseBtn = document.getElementById("play-pause-btn")!;
     const audioPlayer = document.getElementById("audio-player")! as HTMLAudioElement;
     const timer = document.getElementById("timer")!;
+    const playlist = document.getElementById("playlist")!;
+    
+    document.addEventListener("astro:after-swap", () => {
+      music.forEach(song => {
 
+      playlist.innerHTML += `
 
+      <div class="bg-black bg-opacity-15 rounded-md flex border-b-3 pt-1 pb-3 cursor-pointer hover:shadow-md px-2 mt-1 mb-1">
+        <img class='w-10 h-10 object-cover rounded-lg' alt='User avatar' src='/images/developer.png'>
+        <div class="flex flex-col px-4 w-full pb-2">
+            <span class="text-sm text-purple-400 capitalize font-semibold pt-1">
+              ` + song.title + `
+            </span>
+            <span class="text-xs text-gray-300 uppercase font-medium ">
+              ` + song.file + `
+            </span>
+        </div>
+      </div>
+      `;
+    })});
 
     playPauseBtn.addEventListener("click", () => {
       if (audioPlayer.paused) {
@@ -188,12 +177,6 @@ interface Homepage {
         `;
       }
     });
-
-
-
-
-
-
 
     audioPlayer.onloadedmetadata = function() {
       var seconds = Math.round(audioPlayer.duration) % 60;
