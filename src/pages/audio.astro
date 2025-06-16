@@ -65,7 +65,7 @@ interface Homepage {
   <div class="w-full">
     <div class='flex w-6/12  bg-body shadow-md rounded-lg overflow-hidden mx-auto'>
       <div class="flex flex-col w-full">
-        <div class="flex p-5 pb-0">
+        <!-- <div class="flex p-5 pb-0">
             <img class='w-20 h-0 object-cover' alt='User avatar' src='/images/developer.png'>
             <div class="flex flex-col px-2 w-full">
               <span class="text-xs text-gray-400 uppercase font-medium ">
@@ -77,53 +77,35 @@ interface Homepage {
               <span class="text-xs text-gray-300 uppercase font-medium ">
                 -"from the ," aidan
               </span>
-                    <!--
-                    <div class="flex justify-end">
-                        <img class="w-5 cursor-pointer" src="https://www.iconpacks.net/icons/2/free-favourite-icon-2765-thumb.png" />
-                        <img class="w-5 cursor-pointer mx-2" src="https://www.iconpacks.net/icons/2/free-favourite-icon-2765-thumb.png" />
-                        <img class="w-5 cursor-pointer" src="https://www.iconpacks.net/icons/2/free-favourite-icon-2765-thumb.png" />
-                    </div> -->
-            </div>
-        </div>
 
-        <div class="flex flex-col sm:flex-row items-center p-5 pt-2 pb-0">
-          <div class="flex items-center">
-            <div class="flex space-x-3 p-2">
-              <!--<button class="focus:outline-none">
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
-              </button> -->
-                <!-- play button -->
-              <button id="play-pause-btn" class="rounded-full w-10 h-10 flex items-center justify-center pl-0.5 ring-2 ring-purple-400 focus:outline-none">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+        </div>-->
+
+
+
+        <div class="flex flex-col sm:flex-row items-center p-5 pt-2 pb-2">
+          <div class="flex-1 items-center">
+            <div class="flex p-2">
+
+              <button id="play-pause-btn" class="rounded-full w-11/12 h-10 flex items-center justify-center pl-0.5 ring-2 ring-purple-400 focus:outline-none">
+                <p>Lo-fi</p>
+
+                <div class="px-5">
+                  <svg id="play-pause-icon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </div>
               </button>
 
-              <!--<button class="focus:outline-none">
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
-              </button>-->
             </div>
           </div>
 
-          <div class="relative w-full sm:w-full md:w-full lg:w-full ml-4 mr-2">
-            <div class="bg-purple-300 h-2 w-full rounded-lg"></div>
-            <div class="bg-purple-500 h-2 w-1/2 rounded-lg absolute top-0"></div>
-          </div>
-
-          <div class="flex justify-end w-full sm:w-auto pt-1 sm:pt-0">
+          <!--<div class="flex justify-end w-full sm:w-auto pt-1 sm:pt-0">
             <span id="timer" class="text-xs text-gray-300 uppercase font-medium pl-2">
             
             </span>
-          </div>
+          </div> -->
 
         </div>
-            
-        <div class="flex flex-col p-5 pt-2">
-          <div class="border-b-4 pb-0 flex justify-between items-center mb-2">
-              <span class=" text-base font-semibold uppercase text-gray-300"> play list</span>
-          </div>
-
-          <div id="playlist"></div>
-
-        </div>
+          
       </div>
     </div>
   </div>
@@ -138,6 +120,7 @@ interface Homepage {
     import music from "@/config/music.json";
 
     const playPauseBtn = document.getElementById("play-pause-btn")!;
+    const playPauseIcon = document.getElementById("play-pause-icon")!;
     const audioPlayer = document.getElementById("audio-player")! as HTMLAudioElement;
     const timer = document.getElementById("timer")!;
     const playlist = document.getElementById("playlist")!;
@@ -145,26 +128,46 @@ interface Homepage {
     document.addEventListener("astro:after-swap", () => {
       music.forEach(song => {
 
-      playlist.innerHTML += `
+        playlist.innerHTML += `
 
-      <div class="bg-black bg-opacity-15 rounded-md flex border-b-3 pt-1 pb-3 cursor-pointer hover:shadow-md px-2 mt-1 mb-1">
-        <img class='w-10 h-10 object-cover rounded-lg' alt='User avatar' src='/images/developer.png'>
-        <div class="flex flex-col px-4 w-full pb-2">
-            <span class="text-sm text-purple-400 capitalize font-semibold pt-1">
-              ` + song.title + `
-            </span>
-            <span class="text-xs text-gray-300 uppercase font-medium ">
-              ` + song.file + `
-            </span>
-        </div>
-      </div>
-      `;
+          <div class="flex p-2">
+
+            <button id="play-pause-btn" class="rounded-full w-11/12 h-10 flex items-center justify-center pl-0.5 ring-2 ring-purple-400 focus:outline-none">
+              <p>` + song.title + `</p>
+
+              <div class="px-5">
+                <svg id="play-pause-icon" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+            </button>
+
+          </div>
+        `;
+
+
+
+
+
+
+
+
+        /*<div class="bg-black bg-opacity-15 rounded-md flex border-b-3 pt-1 pb-3 cursor-pointer hover:shadow-md px-2 mt-1 mb-1">
+          <img class='w-10 h-10 object-cover rounded-lg' alt='User avatar' src='/images/developer.png'>
+          <div class="flex flex-col px-4 w-full pb-2">
+              <span class="text-sm text-purple-400 capitalize font-semibold pt-1">
+                ` + song.title + `
+              </span>
+              <span class="text-xs text-gray-300 uppercase font-medium ">
+                ` + song.file + `
+              </span>
+          </div>
+        </div>*/
+
     })});
 
     playPauseBtn.addEventListener("click", () => {
       if (audioPlayer.paused) {
         audioPlayer.play();
-        playPauseBtn.innerHTML = `
+        playPauseIcon.innerHTML = `
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="5" y="5" width="3" height="14" rx="2" fill="#a855f7" stroke="#a855f7 " stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
             <rect x="13" y="5" width="3" height="14" rx="2" fill="#a855f7" stroke="#a855f7 " stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
@@ -172,7 +175,7 @@ interface Homepage {
         `;
       } else {
         audioPlayer.pause();
-        playPauseBtn.innerHTML = `
+        playPauseIcon.innerHTML = `
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
         `;
       }
